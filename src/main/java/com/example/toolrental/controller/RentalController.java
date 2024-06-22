@@ -1,16 +1,17 @@
 package com.example.toolrental.controller;
 
+import com.example.toolrental.dto.CheckoutRequest;
 import com.example.toolrental.model.RentalAgreement;
 import com.example.toolrental.service.RentalService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
 import java.time.LocalDate;
 
 /**
- * REST controller for handling tool rental checkouts.
- * Provides an endpoint to create a rental agreement for a specified tool.
+ * Controller for handling tool rental operations.
  * Author: Chhabi Sharma
  */
 @RestController
@@ -21,35 +22,33 @@ public class RentalController {
     private final RentalService rentalService;
 
     /**
-     * Constructor for RentalController.
+     * Constructs a RentalController with the specified RentalService.
      *
-     * @param rentalService the rental service to be used for creating rental agreements
+     * @param rentalService the service to handle rental operations
      */
     public RentalController(RentalService rentalService) {
         this.rentalService = rentalService;
     }
 
     /**
-     * Endpoint for checking out a tool.
-     * 
-     * @param toolCode       the code of the tool to be rented
-     * @param rentalDays     the number of days the tool will be rented
-     * @param discountPercent the discount percentage to be applied to the rental
-     * @param checkoutDate   the date on which the tool is checked out
-     * @return a RentalAgreement instance containing the rental details
+     * Handles the checkout process for renting a tool.
+     *
+     * @param request the checkout request containing tool code, rental days, discount percent, and checkout date
+     * @return a RentalAgreement containing the rental details
      */
     @PostMapping("/checkout")
-    public RentalAgreement checkout(@RequestParam String toolCode,
-                                    @RequestParam int rentalDays,
-                                    @RequestParam int discountPercent,
-                                    @RequestParam String checkoutDate) {
+    public RentalAgreement checkout(@Valid @RequestBody CheckoutRequest request) {
         logger.info("Received checkout request: toolCode={}, rentalDays={}, discountPercent={}, checkoutDate={}",
-                toolCode, rentalDays, discountPercent, checkoutDate);
+                request.getToolCode(), request.getRentalDays(), request.getDiscountPercent(), request.getCheckoutDate());
         
-        LocalDate date = LocalDate.parse(checkoutDate);
-        RentalAgreement agreement = rentalService.checkout(toolCode, rentalDays, discountPercent, date);
+        LocalDate date = LocalDate.parse(request.getCheckoutDate());
+        RentalAgreement agreement = rentalService.checkout(request);
         
-        logger.info("Created rental agreement: {}", agreement);
+        logger.info("Created rental agreement: toolCode={}, toolType={}, toolBrand={}, rentalDays={}, checkoutDate={}, dueDate={}, dailyRentalCharge={}, chargeDays={}, preDiscountCharge={}, discountPercent={}, discountAmount={}, finalCharge={}",
+                agreement.getToolCode(), agreement.getToolType(), agreement.getToolBrand(), agreement.getRentalDays(),
+                agreement.getCheckoutDate(), agreement.getDueDate(), agreement.getDailyRentalCharge(), agreement.getChargeDays(),
+                agreement.getPreDiscountCharge(), agreement.getDiscountPercent(), agreement.getDiscountAmount(), agreement.getFinalCharge());
+        
         return agreement;
     }
 }
