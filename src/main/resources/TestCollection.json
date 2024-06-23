@@ -1,0 +1,196 @@
+{
+    "info": {
+        "name": "Tool Rental API",
+        "_postman_id": "example-postman-id",
+        "description": "Collection to test the Tool Rental API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Test Checkout with Invalid Discount",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n\t\"toolCode\": \"JAKR\",\n\t\"rentalDays\": 5,\n\t\"discountPercent\": 101,\n\t\"checkoutDate\": \"2015-09-03\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/rental/checkout",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "rental",
+                        "checkout"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Test Checkout Ladder With Discount",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n\t\"toolCode\": \"LADW\",\n\t\"rentalDays\": 3,\n\t\"discountPercent\": 10,\n\t\"checkoutDate\": \"2020-07-02\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/rental/checkout",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "rental",
+                        "checkout"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Test Checkout Chainsaw With Discount",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n\t\"toolCode\": \"CHNS\",\n\t\"rentalDays\": 5,\n\t\"discountPercent\": 25,\n\t\"checkoutDate\": \"2015-07-02\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/rental/checkout",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "rental",
+                        "checkout"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Test Checkout Jackhammer Without Discount",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n\t\"toolCode\": \"JAKR\",\n\t\"rentalDays\": 5,\n\t\"discountPercent\": 0,\n\t\"checkoutDate\": \"2015-09-03\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/rental/checkout",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "rental",
+                        "checkout"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Test Checkout Ladder Without Discount",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n\t\"toolCode\": \"LADW\",\n\t\"rentalDays\": 3,\n\t\"discountPercent\": 0,\n\t\"checkoutDate\": \"2020-07-02\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/rental/checkout",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "rental",
+                        "checkout"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Test Checkout Chainsaw Without Discount",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n\t\"toolCode\": \"CHNS\",\n\t\"rentalDays\": 5,\n\t\"discountPercent\": 0,\n\t\"checkoutDate\": \"2015-07-02\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/rental/checkout",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "rental",
+                        "checkout"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}
